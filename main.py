@@ -1,5 +1,6 @@
 import json
 from models import Game
+from data import import_all
 
 with open('results/team_gamelogs-nhl-current.json', 'r') as completed:
     completed_games = json.load(completed)
@@ -11,6 +12,7 @@ with open('results/full_game_schedule-nhl-current.json', 'r') as games:
 def create_all_games(game_data, gamelog):
     
     all_games = []
+    import_all()
 
     #populates game id, date, time, teams
     game_data = game_data.pop('fullgameschedule') # creates dict
