@@ -1,59 +1,37 @@
-class Game():
-    def __init__(self, game_info):
+from app import db, app
+
+class Game(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    game_id = db.Column(db.String(120))
+    date = db.Column(db.String(120))
+    time = db.Column(db.String(120))
+    away_team = db.Column(db.String(120))
+    home_team = db.Column(db.String(120))
+    away_goals = db.Column(db.Integer, primary_key=False)
+    home_goals = db.Column(db.Integer, primary_key=False)
+    game_status = db.Column(db.String(120))
+
+    def __init__(self, game_id, date, time, away_team, home_team):
         """Scrapes game information from API"""
-        game_data = {}
-        game_necessary_values = ['id', 'date', 'time', 'awayTeam', 'homeTeam']
-
-
-        for game_value in game_necessary_values:
-            if game_value == 'awayTeam' or game_value == 'homeTeam':
-                team = game_info.get(game_value)
-                game_data[game_value] = team.get('Abbreviation')
-            else:
-                game_data[game_value] = game_info.get(game_value)
-
-        self.id = game_data.get('id')
-        self.date = game_data.get('date')
-        self.time = game_data.get('time')
-        self.away_team = game_data.get('awayTeam')
-        self.home_team = game_data.get('homeTeam')
+        
+        self.game_id = game_id
+        self.date = date
+        self.time = time
+        self.away_team = away_team
+        self.home_team = home_team
+        self.away_goals = 0
+        self.home_goals = 0
         self.game_status = "Unplayed"
 
-    def complete_game(self, stats):
+    def complete_game(self, away_goals, home_goals, game_status):
         """Marks game as completed, populates score"""
 
-        stat_list = {}
-        stats_necessary_values = ['Wins', 'Losses','GoalsFor', 'GoalsAgainst', 'OvertimeWins', 'OvertimeLosses']
-        for stat_value in stats_necessary_values:
-            stat = stats.get(stat_value)
-            stat_list[stat_value] = stat.get('#text')
+        self.away_goals = away_goals
+        self.home_goals = home_goals
+        self.game_status = "Final{}".format(game_status)
 
-        self.game_status = "Final"
-
-        #Populates final score/checks if shootout
-        if self.home_team == 'STL':
-            self.home_goals = int(stat_list.get('GoalsFor'))
-            self.away_goals = int(stat_list.get('GoalsAgainst'))
-            if stat_list['Wins'] == "1" and self.home_goals == self.away_goals:
-                self.game_status = "Final/SO"
-                self.home_goals += 1
-            elif stat_list['Losses'] == "1" and self.home_goals == self.away_goals:
-                self.game_status = "Final/SO"
-                self.away_goals += 1
-        else: 
-            self.home_goals = int(stat_list.get('GoalsAgainst'))
-            self.away_goals = int(stat_list.get('GoalsFor'))
-            if stat_list['Wins'] == "1" and self.home_goals == self.away_goals:
-                self.game_status = "Final/SO"
-                self.away_goals += 1
-            elif stat_list['Losses'] == "1" and self.home_goals == self.away_goals:
-                self.game_status = "Final/SO"
-                self.home_goals += 1
-
-        #Checks if Overtime
-        if stat_list.get('OvertimeWins') == '1' or stat_list.get('OvertimeLosses') == '1':
-            self.game_status = "Final/OT"
-        
+ 
 
     def __repr__(self):
        
