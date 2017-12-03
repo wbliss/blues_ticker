@@ -12,10 +12,13 @@ def import_all():
     output = msf.msf_get_data(league='nhl', season='current', feed='team_gamelogs', team=team, format='json')
 
 def import_game(date):
-    """imports game for the selected date (YYYYMMDD)"""
-
     msf = MySportsFeeds(version='1.0')
     msf.authenticate(username, password)
+    output = msf.msf_get_data(league='nhl', season='current', feed='scoreboard', fordate=date, team=team, format='json')
+
+def is_game_today(date):
+    """imports game for the selected date (YYYYMMDD)"""
+
     with open('results/full_game_schedule-nhl-current.json', 'r') as games:
         all_games = json.load(games)
     
@@ -28,7 +31,6 @@ def import_game(date):
         game_dates.append(game_date)
 
     if date in game_dates:
-        output = msf.msf_get_data(league='nhl', season='current', feed='scoreboard', fordate=date, team=team, format='json')
         return True
     else:
         return False
@@ -71,8 +73,7 @@ def get_update_time(today_datetime):
     update_time = (convert_to_24hour(game_time) + 300) % 2400
 
     if update_time < 300:
-        tomorrow = date.today() + timedelta(days=1)
-        tomorrow = tomorrow.strftime("%Y%m%d")
+        tomorrow = (date.today() + timedelta(days=1)).strftime("%Y%m%d")
         update_datetime = tomorrow + '.' + str(update_time)
     else:
         update_datetime = today_date + '.' + str(update_time)
@@ -80,4 +81,4 @@ def get_update_time(today_datetime):
     return update_datetime
 
 if __name__ == "__main__":
-    
+    convert_to_24hour('8:00PM')

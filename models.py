@@ -1,8 +1,21 @@
-class Game():
-    def __init__(self, id, date, time, away_team, home_team):
+from app import db, app
+
+class Game(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    game_id = db.Column(db.String(120))
+    date = db.Column(db.String(120))
+    time = db.Column(db.String(120))
+    away_team = db.Column(db.String(120))
+    home_team = db.Column(db.String(120))
+    away_goals = db.Column(db.Integer, primary_key=False)
+    home_goals = db.Column(db.Integer, primary_key=False)
+    game_status = db.Column(db.String(120))
+
+    def __init__(self, game_id, date, time, away_team, home_team):
         """Scrapes game information from API"""
         
-        self.id = id
+        self.game_id = game_id
         self.date = date
         self.time = time
         self.away_team = away_team
