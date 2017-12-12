@@ -101,6 +101,6 @@ ENV/
 .mypy_cache/
 
 config.py
-results/*
+data/*
 .DS_Store
 reset.py
