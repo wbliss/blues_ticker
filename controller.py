@@ -6,10 +6,12 @@ from data import *
 
 @app.route('/most-recent')
 def display_most_recent():
+    #Display if game was played on todays date
     most_recent_game = Game.query.filter_by(most_recent=True).first()
 
 @app.route('/next-game')
 def display_next_game():
+    #Display if there was not a game played today
     next_game = Game.query.filter_by(next_game=True).first()
 
 def main():

@@ -11,8 +11,8 @@ class Game(db.Model):
     away_goals = db.Column(db.String(120))
     home_goals = db.Column(db.String(120))
     game_status = db.Column(db.String(120))
-    """most_recent = db.Column(db.Boolean)
-    next_game = db.Column(db.Boolean)"""
+    most_recent = db.Column(db.Boolean)
+    next_game = db.Column(db.Boolean)
 
     def __init__(self, game_id, date, time, away_team, home_team):
         """Scrapes game information from API"""
@@ -29,7 +29,7 @@ class Game(db.Model):
         self.next_game = False
 
     def complete_game(self, away_goals, home_goals, game_status):
-        Marks game as completed, populates score"""
+        """Marks game as completed, populates score"""
 
         game = Game.query.filter_by(game_id=self.game_id)
         self.away_goals = away_goals

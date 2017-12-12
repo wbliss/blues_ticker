@@ -73,8 +73,8 @@ def is_game_completed(game_date):
         return False
 
 def get_current_date_time():
-    """returns current eastern date time as string in format 'YYYYMMDD.HHMM'"""
-    tz = timezone('EST')
+    """returns current UTC date time as string in format 'YYYYMMDD.HHMM'"""
+    tz = timezone('UTC')
     today = datetime.now(tz).strftime("%Y%m%d.%H%M")
     return today
 
