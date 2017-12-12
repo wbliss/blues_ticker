@@ -17,6 +17,5 @@ def display_next_game():
 def main():
     return None
 
-
 if __name__ == "__main__":
     main()
