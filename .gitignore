@@ -103,3 +103,4 @@ ENV/
 config.py
 results/*
 .DS_Store
+reset.py

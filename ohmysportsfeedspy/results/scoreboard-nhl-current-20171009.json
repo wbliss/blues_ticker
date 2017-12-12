@@ -1,0 +1,65 @@
+{
+    "scoreboard": {
+        "lastUpdatedOn": "2017-12-04 9:08:26 PM",
+        "gameScore": [{
+            "game": {
+                "ID": "40805",
+                "date": "2017-10-09",
+                "time": "1:00PM",
+                "awayTeam": {
+                    "ID": "17",
+                    "City": "St. Louis",
+                    "Name": "Blues",
+                    "Abbreviation": "STL"
+                },
+                "homeTeam": {
+                    "ID": "8",
+                    "City": "New York",
+                    "Name": "Islanders",
+                    "Abbreviation": "NYI"
+                },
+                "location": "Nassau Coliseum"
+            },
+            "isUnplayed": "false",
+            "isInProgress": "false",
+            "isCompleted": "true",
+            "awayScore": "3",
+            "awayShots": "35",
+            "homeScore": "2",
+            "homeShots": "42",
+            "periodSummary": {
+                "period": [{
+                    "@number": "1",
+                    "awayScore": "0",
+                    "awayShots": "11",
+                    "homeScore": "0",
+                    "homeShots": "8"
+                }, {
+                    "@number": "2",
+                    "awayScore": "2",
+                    "awayShots": "10",
+                    "homeScore": "0",
+                    "homeShots": "15"
+                }, {
+                    "@number": "3",
+                    "awayScore": "0",
+                    "awayShots": "10",
+                    "homeScore": "2",
+                    "homeShots": "16"
+                }, {
+                    "@number": "4",
+                    "awayScore": "0",
+                    "awayShots": "4",
+                    "homeScore": "0",
+                    "homeShots": "3"
+                }, {
+                    "@number": "5",
+                    "awayScore": "2",
+                    "awayShots": "0",
+                    "homeScore": "0",
+                    "homeShots": "0"
+                }]
+            }
+        }]
+    }
+}
