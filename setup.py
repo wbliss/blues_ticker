@@ -1,16 +1,20 @@
 import json
 from models import db, Game
+from config import fav_team
+from data import setup_import
 
 with open('results/team_gamelogs-nhl-current.json', 'r') as completed:
    completed_games = json.load(completed)
 
 with open('results/full_game_schedule-nhl-current.json', 'r') as games:
-    all_games = json.load(games)
+    full_games = json.load(games)
     
 def create_all_games(game_data, gamelog):
-    """for use on initial setup, creates all games for season"""
-    db.create_all()
+    """for use on initial setup, creates all games for season and populates already completed games"""
+
     all_games = []
+    if not setup_import():
+        return "Import failed"
 
     #populates game id, date, time, teams
     game_data = game_data.pop('fullgameschedule') # creates dict
@@ -35,9 +39,10 @@ def create_all_games(game_data, gamelog):
         away_team = game_data.get('awayTeam')
         home_team = game_data.get('homeTeam')
         new_game = Game(game_id, date, time, away_team, home_team)
-        db.session.add(new_game)
         all_games.append(new_game)
-
+        db.session.add(new_game)
+        
+        
     #checks via game id if game is completed. If it is, populates game with the final score
     gamelog = gamelog.pop('teamgamelogs') # creates dict
     gamelog = gamelog.pop('gamelogs') # creates list
@@ -55,9 +60,7 @@ def create_all_games(game_data, gamelog):
         #Populates final score/checks if shootout
         game = all_games[score_index]
         game_status = ""
-        home_team = game.home_team
-        away_team = game.away_team
-        if home_team == team:
+        if game.home_team == fav_team:
             home_goals = int(stat_list.get('GoalsFor'))
             away_goals = int(stat_list.get('GoalsAgainst'))
             if stat_list['Wins'] == "1" and home_goals == away_goals:
@@ -81,12 +84,13 @@ def create_all_games(game_data, gamelog):
             game_status = "/OT"
 
         if game.game_id == completed_game_info.get('id'):
-            game.complete_game(away_goals, home_goals, game_status)
             all_games.remove(game)
+            game.complete_game(away_goals, home_goals, game_status)
             all_games.insert(score_index, game)
+            
     
     db.session.commit()
     return all_games
 
 if __name__ == "__main__":
-    create_all_games(all_games, completed_games)
+    create_all_games(full_games, completed_games)

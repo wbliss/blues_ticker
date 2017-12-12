@@ -1,0 +1,59 @@
+{
+    "scoreboard": {
+        "lastUpdatedOn": "2017-12-03 9:21:17 AM",
+        "gameScore": [{
+            "game": {
+                "ID": "41170",
+                "date": "2017-12-02",
+                "time": "6:00PM",
+                "awayTeam": {
+                    "ID": "17",
+                    "City": "St. Louis",
+                    "Name": "Blues",
+                    "Abbreviation": "STL"
+                },
+                "homeTeam": {
+                    "ID": "25",
+                    "City": "Minnesota",
+                    "Name": "Wild",
+                    "Abbreviation": "MIN"
+                },
+                "location": "Xcel Energy Center"
+            },
+            "isUnplayed": "false",
+            "isInProgress": "false",
+            "isCompleted": "true",
+            "awayScore": "1",
+            "awayShots": "42",
+            "homeScore": "2",
+            "homeShots": "25",
+            "periodSummary": {
+                "period": [{
+                    "@number": "1",
+                    "awayScore": "0",
+                    "awayShots": "11",
+                    "homeScore": "1",
+                    "homeShots": "7"
+                }, {
+                    "@number": "2",
+                    "awayScore": "1",
+                    "awayShots": "14",
+                    "homeScore": "0",
+                    "homeShots": "9"
+                }, {
+                    "@number": "3",
+                    "awayScore": "0",
+                    "awayShots": "16",
+                    "homeScore": "0",
+                    "homeShots": "8"
+                }, {
+                    "@number": "4",
+                    "awayScore": "0",
+                    "awayShots": "1",
+                    "homeScore": "1",
+                    "homeShots": "1"
+                }]
+            }
+        }]
+    }
+}

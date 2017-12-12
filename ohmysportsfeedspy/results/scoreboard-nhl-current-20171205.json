@@ -1,0 +1,29 @@
+{
+    "scoreboard": {
+        "lastUpdatedOn": "2017-11-30 12:01:42 AM",
+        "gameScore": [{
+            "game": {
+                "ID": "41192",
+                "date": "2017-12-05",
+                "time": "7:30PM",
+                "awayTeam": {
+                    "ID": "17",
+                    "City": "St. Louis",
+                    "Name": "Blues",
+                    "Abbreviation": "STL"
+                },
+                "homeTeam": {
+                    "ID": "14",
+                    "City": "Montreal",
+                    "Name": "Canadiens",
+                    "Abbreviation": "MTL"
+                },
+                "location": "Bell Centre"
+            },
+            "isUnplayed": "true",
+            "isInProgress": "false",
+            "isCompleted": "false",
+            "periodSummary": null
+        }]
+    }
+}
