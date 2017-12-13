@@ -3,7 +3,7 @@ import os
 
 import requests
 
-from config import fav_team, local_tz
+from config import fav_team_id, local_tz
 from helpers import complete_game, convert_datetime
 from models import Game, db
 
@@ -20,10 +20,11 @@ def import_games():
         games = date.pop('games')
         for game in games:
             teams = game.get('teams')
-            away_team = teams.get('away').get('team').get('name')
-            home_team = teams.get('home').get('team').get('name')
 
-            if home_team == fav_team or away_team == fav_team:
+            away_team_id = str(teams.get('away').get('team').get('id'))
+            home_team_id = str(teams.get('home').get('team').get('id'))
+
+            if home_team_id == fav_team_id or away_team_id == fav_team_id:
                 blues_games.append(game)
                 break
 
@@ -44,18 +45,22 @@ def create_db():
         game_time = date_time.split('.')[1]
         away_team = game.get('teams').get('away').get('team').get('name')
         home_team = game.get('teams').get('home').get('team').get('name')
-        new_game = Game(game_id, game_date, game_time, away_team, home_team)
+        if all_games.index(game) == 0:
+            new_game = Game(game_id, game_date, game_time, away_team, home_team, next_game=True)
+        else:
+            new_game = Game(game_id, game_date, game_time, away_team, home_team)
         db.session.add(new_game)
+
     
-    for game in all_games:
+    """for game in all_games:
         game_id = str(game.get('gamePk'))
-        complete_game(game_id, mass_import=True)
+        complete_game(game_id, mass_import=True)"""
 
     db.session.commit()
 
 def main():
     db.create_all()
-    import_games()
+    #import_games()
     create_db()
 
 if __name__ == '__main__':

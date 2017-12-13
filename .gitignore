@@ -104,3 +104,4 @@ config.py
 data/*
 .DS_Store
 reset.py
+getgame.py

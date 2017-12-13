@@ -2,7 +2,7 @@ import json
 import requests
 
 from models import db, Game
-from config import fav_team, local_tz
+from config import fav_team_id, local_tz
 from datetime import datetime, timedelta
 from pytz import timezone
 
@@ -72,10 +72,9 @@ def get_current_date_time():
     today = datetime.now(tz).strftime("%Y-%m-%d.%I:%M%p")
     return today
 
-def add_minutes(delay):
+def add_minutes(delay, date_time):
     """adds x minutes to current time for update"""
-    tz = timezone(local_tz)
-    update_time = (datetime.now(tz) + timedelta(minutes=delay)).strftime('%Y-%m-%d.%I:%M%p')
+    update_time = (datetime.strptime(date_time,'%Y-%m-%d.%H%M') + timedelta(minutes=delay)).strftime('%Y-%m-%d.%H%M')
     return update_time
 
 def get_live_updates(game):
@@ -86,16 +85,36 @@ def get_live_updates(game):
     
     if game_status == 'Final':
         complete_game(game.game_id, game)
-        return False
+        return game_status
 
     if game_status == 'Preview':
-        return False
+        return game_status
 
-    #TODO - Will get and return(will need to look at json of ongoing game to study):
-    #   Period
-    #   Score
-    #   Shots
-    #   Time 
+    if game_status == 'Live':
+        game_details = {}
+        linescore = game_log.get('liveData').get('linescore')
+        game_details['game_time'] = linescore.get('currentPeriodTimeRemaining')
+        game_details['period'] = linescore.get('currentPeriodOrdinal')
+        game_details['away_score'] = linescore.get('teams').get('away').get('goals')
+        game_details['home_score'] = linescore.get('teams').get('home').get('goals')
+        game_details['away_shots'] = linescore.get('teams').get('away').get('shotsOnGoal')
+        game_details['home_shots'] = linescore.get('teams').get('home').get('shotsOnGoal')
+
+        return game_details
+
+def get_up_to_date():
+    not_up_to_date = True
+    next_game_url = 'https://statsapi.web.nhl.com/api/v1/teams/{}?expand=team.schedule.next'.format(fav_team_id)
+    api_next_game = requests.get(next_game_url).json()
+    api_next_game_id = str(api_next_game.get('teams')[0].get('nextGameSchedule').get('dates')[0].get('games')[0].get('gamePk'))
+    while not_up_to_date:
+        db_next_game = Game.query.filter_by(next_game=True).first()
+        if db_next_game.game_id != api_next_game_id:
+            complete_game(db_next_game.game_id, db_next_game, mass_import=True)
+        else:
+            db.session.commit()
+            not_up_to_date = False
+            return 'Games are up-to-date!'
 
 def main():
     return None
