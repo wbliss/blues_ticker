@@ -78,7 +78,7 @@ def add_minutes(delay, date_time):
     return update_time
 
 def get_live_updates(game):
-    """returns gameinfo split on '.' (0 = GameID, 1 = GameTime 2 = AwayTeam 3 = HomeTeam 4 = AwayScore 5 = HomeScore 6 = GameStatus')"""
+    """returns gameinfo as dictionary"""
     game_url = 'https://statsapi.web.nhl.com/api/v1/game/{}/feed/live'.format(game.game_id)
     game_log = requests.get(game_url).json()
     game_status = game_log.get('gameData').get('status').get('abstractGameState')
@@ -103,6 +103,7 @@ def get_live_updates(game):
         return game_details
 
 def get_up_to_date():
+    """updates all unupdated games"""
     not_up_to_date = True
     next_game_url = 'https://statsapi.web.nhl.com/api/v1/teams/{}?expand=team.schedule.next'.format(fav_team_id)
     api_next_game = requests.get(next_game_url).json()
