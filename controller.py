@@ -33,9 +33,9 @@ def display_next_game():
 
 @app.route('/live')
 def display_live_game():
-    if data_queue.empty():
+    if stats_queue.empty():
         return render_template('live.html', game_status="Empty")
-    game_stats = data_queue.get()
+    game_stats = stats_queue.get()
     return render_template('live.html', game_stats=game_stats)
 
 if __name__ == "__main__":
