@@ -1,5 +1,36 @@
-{% extends base.html %}
-
+{% extends "base.html" %}
+{% block refreshtime %}
+    <script>
+        
+         function autoRefresh()
+        {
+            window.location = window.location.href;
+        }
+        
+         setInterval('autoRefresh()', 60000);
+    </script>
+{% endblock %}
 {% block content %}
-    <p>{{game_stats}}</p>
+    <table>
+        <tr>
+            <td><embed src='/resources/{{game.away_team}}.svg' height="100px" width="100px"/></td>
+            <td><p>{{game_stats.get('away_score')}}</p></td>
+            <td><p>Shots:</p></td>
+            <td><p>{{game_stats.get('away_shots')}}</p></td>
+        </tr>
+        <tr>
+            <td><embed src='/resources/{{game.home_team}}.svg' height="100px" width="100px"/></td>
+            <td><p>{{game_stats.get('home_score')}}</p></td>
+            <td><p>Shots:</p></td>
+            <td><p>{{game_stats.get('home_shots')}}</p></td>
+        </tr>
+        <tr>
+            <td><p>Period:</p></td>
+            <td><p>{{game_stats.get('period')}}</p></td>
+        </tr>
+        <tr>
+            <td><p>Time:</p></td>
+            <td><p>{{game_stats.get('game_time')}}</p></td>
+        </tr>
+    </table>
 {% endblock %}
