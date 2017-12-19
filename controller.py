@@ -29,7 +29,7 @@ def display_game():
         game_stats = get_live_updates(next_game)
         return render_template('live.html', game=next_game, game_stats=game_stats)
     
-    #Else, displays the next game
+    #Otherwise, displays the next game
     else:
         return render_template('next-game.html', game=next_game)
 
@@ -47,10 +47,9 @@ def display_next_game():
 
 @app.route('/live')
 def display_live_game():
-    if stats_queue.empty():
-        return render_template('live.html', game_status="Game hasn't started yet")
-    game_stats = stats_queue.get()
-    return render_template('live.html', game_stats=game_stats)
+    next_game = Game.query.filter_by(next_game=True).first()
+    game_stats = get_live_updates(next_game)
+    return render_template('live.html', game=next_game, game_stats=game_stats)
 
 if __name__ == "__main__":
     app.run()

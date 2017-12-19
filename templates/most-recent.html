@@ -7,9 +7,24 @@
             window.location = window.location.href;
         }
         
-         setInterval('autoRefresh()', 21600000); // this will reload page after every 5 secounds; Method I
+         setInterval('autoRefresh()', 21600000);
     </script>
 {% endblock %}
 {% block content %}
-    <p>{{game}}</p>
+    <p>Final Score:</p>
+    <table>
+        <tr>
+            <td><img src= {{ url_for('static', filename = game.away_team.replace(' ', '_') + '.svg') }} alt= game.away_team + ' Logo'
+                height="100px" width="100px"></td>
+            <td>{{game.away_goals}}</td>
+        </tr>
+        <tr>
+            <td><img src= {{ url_for('static', filename = game.home_team.replace(' ', '_') + '.svg') }} alt= game.home_team + ' Logo'
+                height="100px" width="100px"></td>
+            <td>{{game.home_goals}}</td>
+        </tr>
+        <tr>
+            <td><p>{{game.date}}</p></td>
+        </tr>
+    </table>
 {% endblock %}
