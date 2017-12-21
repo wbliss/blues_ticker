@@ -1,7 +1,9 @@
 # blues_ticker
 
 Download and install:
+
 Python 3.6
+
 LAMP
 
 ```
