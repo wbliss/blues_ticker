@@ -1,11 +1,19 @@
 <!doctype html>
 <html>
     <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
         {% block refreshtime %} 
         {% endblock %}     
     </head>
     <body>
+    <div id="element">
+        <div id="banner">
+            <span>St. Louis Blues</span>
+        </div>
+        <div id="mainBody">
         {% block content %}
         {% endblock %}
+        </div>
+    </div>
     </body>
 </html>

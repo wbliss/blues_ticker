@@ -12,19 +12,30 @@
 {% endblock %}
 {% block content %}
     <p>Final Score:</p>
-    <table>
-        <tr>
-            <td><img src= {{ url_for('static', filename = game.away_team.replace(' ', '_') + '.svg') }} alt= game.away_team + ' Logo'
-                height="100px" width="100px"></td>
-            <td>{{game.away_goals}}</td>
-        </tr>
-        <tr>
-            <td><img src= {{ url_for('static', filename = game.home_team.replace(' ', '_') + '.svg') }} alt= game.home_team + ' Logo'
-                height="100px" width="100px"></td>
-            <td>{{game.home_goals}}</td>
-        </tr>
-        <tr>
-            <td><p>{{game.date}}</p></td>
-        </tr>
-    </table>
+
+<div id="awayLogoBox">
+    <img class="teamLogo" src= {{ url_for('static', filename = game.away_team.replace(' ', '_') + '.svg') }} alt= game.away_team + ' Logo'>
+</div>
+<div id="awayScore">
+    <p class="score">{{game.away_goals}}</p>
+</div>
+
+
+<div id="homeLogoBox">
+    <img class="teamLogo" src= {{ url_for('static', filename = game.home_team.replace(' ', '_') + '.svg') }} alt= game.home_team + ' Logo'>
+</div>   
+<div id="homeScore">
+    <p class="score">{{game.home_goals}}</p>
+</div>
+<div id="gameStatus">
+    <p>{{game.game_status}}</p>
+</div>
+
+<div id="vs">
+    <p>VS</p>
+</div>
+
+<div id="gameTime">
+    <p>{{game.date}}</p>
+</div>
 {% endblock %}

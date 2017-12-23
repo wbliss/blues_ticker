@@ -11,20 +11,18 @@
     </script>
 {% endblock %}
 {% block content %}
-    <table>
-        <tr>
-            <td><img src= {{ url_for('static', filename = game.away_team.replace(' ', '_') + '.svg') }} alt= game.away_team + ' Logo'
-                height="100px" width="100px"></td>
-        </tr>
-        <tr>
-            <td><img src= {{ url_for('static', filename = game.home_team.replace(' ', '_') + '.svg') }} alt= game.home_team + ' Logo'
-                height="100px" width="100px"></td>
-        </tr>
-        <tr>
-            <td><p>{{game.date}}</p></td>
-        </tr>
-        <tr>
-            <td><p>{{game.time}}</p></td>
-        </tr>
-    </table>
+<div id="gameTime">
+    <p>{{game.date}} {{game.time}}</p>
+</div>
+<div id="awayLogoBox">
+   <img class="teamLogo" src= {{ url_for('static', filename = game.away_team.replace(' ', '_') + '.svg') }} alt= game.away_team + ' Logo'>
+</div>
+<div id="homeLogoBox">      
+    <img class="teamLogo" src= {{ url_for('static', filename = game.home_team.replace(' ', '_') + '.svg') }} alt= game.home_team + ' Logo'>
+</div>
+<div id="vs">
+    <p>VS</p>
+</div>
+
+
 {% endblock %}

@@ -10,10 +10,10 @@ from helpers import get_current_date_time, convert_to_24hour, get_live_updates, 
 @app.route('/')
 def index():
     get_up_to_date()
-    return redirect('/display-game')
+    return redirect('/ticker')
     
-@app.route('/display-game')
-def display_game():
+@app.route('/ticker')
+def display_ticker():
     current_date_time = get_current_date_time()
     next_game = Game.query.filter_by(next_game=True).first()
     prev_game = Game.query.filter_by(most_recent=True).first()
@@ -50,6 +50,17 @@ def display_live_game():
     next_game = Game.query.filter_by(next_game=True).first()
     game_stats = get_live_updates(next_game)
     return render_template('live.html', game=next_game, game_stats=game_stats)
+
+@app.route('/game')
+def display_game():
+    id = request.args.get('id')
+
+    game = Game.query.filter_by(game_id=id).first()
+    if game.game_status == "Unplayed":
+        return render_template('next-game.html', game=game)
+    else:
+        return render_template('most-recent.html', game=game)
+
 
 if __name__ == "__main__":
     app.run()

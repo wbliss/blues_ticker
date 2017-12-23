@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'nhl_st_louisregular';
+    src: url('nhl_st_louis-webfont.woff2') format('woff2'),
+         url('nhl_st_louis-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+#element {
+    position: relative;
+    height: 320px;
+    width: 480px;
+}
+#homeLogoBox {
+    
+    position: absolute;
+    top: 150px;
+    left: 285px;
+    height: 112px;
+    width: 140px;
+
+}
+
+#awayLogoBox {
+    
+    position: absolute;
+    top: 150px;
+    left: 55px;
+    height: 112px;
+    width: 140px;
+    
+}
+
+.teamLogo {
+    
+    height: 100%;
+    width: 100%;
+
+}
+
+
+#mainBody { 
+
+    background-color: white;
+    height: 245px;
+    width: 480px;
+
+}
+
+#banner{
+    text-align: center;
+    height: 75px;
+    width: 480px;
+    font-family: 'nhl_st_louisregular', sans-serif;
+    font-size: 62px;
+    background-color: #002f87;
+    color: #FCb514;
+    
+}
+
+#gameTime {
+
+    position: absolute;
+    top: 90px;
+    left: 45px;
+
+}
+#gameTime p {
+    
+    font-size: 16px;
+    font-family: Century Gothic, sans-serif;
+
+}
+
+#homeScore {
+    position: absolute;
+    left: 410px;
+    top: 150px;
+    
+}
+
+#awayScore {
+    position: absolute;
+    left: 170px;
+    top: 150px;
+    
+}
+
+.score {
+    color: #FCb514;
+    text-align: right;
+    font-size: 62px;
+    font-family: 'nhl_st_louisregular', sans-serif;
+}
+
+
+#vs {
+    position: absolute;
+    font-family: Century Gothic, sans-serif;
+    font-size: 16px;
+    text-align: center;
+    top: 60%;
+    left: 50%;
+}
+
+
+
+#gameStatus {
+    position: absolute;
+    font-family: Century Gothic, sans-serif;
+    font-size: 16px;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+}
