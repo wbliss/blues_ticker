@@ -7,18 +7,42 @@
             window.location = window.location.href;
         }
         
-         setInterval('autoRefresh()', 60000);
+         setInterval('autoRefresh()', 120000);
     </script>
 {% endblock %}
 {% block content %}
     {% if game_stats == 'Preview' %}
-        <p>Beginning soon:</p>
-    
-            <div id="awayLogoBox"><img class="teamLogo" src= {{ url_for('static', filename = game.away_team.replace(' ', '_') + '.svg') }} alt= game.away_team + ' Logo'
-                height="100px" width="100px"></div>
-            <div id="vs"><span>VS.</span></div>
-            <div id="homeLogoBox"><img class="teamLogo" src= {{ url_for('static', filename = game.home_team.replace(' ', '_') + '.svg') }} alt= game.home_team + ' Logo'
-                height="100px" width="100px"></div>
+        <div id="awayLogoBox">
+            <img class="teamLogo" src= {{ url_for('static', filename = game.away_team.replace(' ', '_') + '.svg') }} alt= game.away_team + ' Logo'>
+        </div>
+        
+        <div id="awayScore">
+            3
+        </div>
+        <div id="awayShots">
+            29
+        </div>
+            
+        <div id="homeLogoBox">
+            <img class="teamLogo" src= {{ url_for('static', filename = game.home_team.replace(' ', '_') + '.svg') }} alt= game.home_team + ' Logo'>
+        </div>
+        <div id="homeScore">
+            2
+        </div>
+        <div id="homeShots">
+            32
+        </div>
+        
+        <div id="period">
+            1st
+        </div>
+        <div id="periodTime">
+            00:00
+        </div>
+        <div id="sog">
+            SOG
+        </div>
+            
         
     {% elif game_stats == 'Final' %}
         <p>Final Score:</p>
@@ -39,33 +63,32 @@
             <img class="teamLogo" src= {{ url_for('static', filename = game.away_team.replace(' ', '_') + '.svg') }} alt= game.away_team + ' Logo'>
         </div>
         
-        <div>
-            <p>{{game_stats.get('away_score')}}</p>
+        <div id="awayScore">
+            {{game_stats.get('away_score')}}
         </div>
-        <div>
-            <p>Shots:</p>
-        </div>
-        <div>
-            <p>{{game_stats.get('away_shots')}}</p>
+        <div id="awayShots">
+            {{game_stats.get('away_shots')}}
         </div>
             
         <div id="homeLogoBox">
             <img class="teamLogo" src= {{ url_for('static', filename = game.home_team.replace(' ', '_') + '.svg') }} alt= game.home_team + ' Logo'>
         </div>
-        <div>
-            <p>{{game_stats.get('home_score')}}</p>
+        <div id="homeScore">
+            {{game_stats.get('home_score')}}
         </div>
-        <div>
-            <p>Shots:</p>
+        <div id="homeShots">
+            {{game_stats.get('home_shots')}}
         </div>
-        <div>
-            <p>{{game_stats.get('home_shots')}}</p>
+        
+        <div id="period">
+            {{game_stats.get('period')}}
         </div>
-
-        <p>Period:</p>
-            <p>{{game_stats.get('period')}}</p>
-        <p>Time:</p>
-            <p>{{game_stats.get('game_time')}}</p>
+        <div id="periodTime">
+            {{game_stats.get('game_time')}}
+        </div>
+        <div id="sog">
+            SOG
+        </div>
 
     {% endif %} 
 {% endblock %}

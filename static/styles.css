@@ -7,16 +7,23 @@
 
 }
 
+body {
+    background-color: white;
+    width: 480px;
+    height: 320px;
+}
+
 #element {
     position: relative;
     height: 320px;
     width: 480px;
 }
+
 #homeLogoBox {
     
     position: absolute;
-    top: 150px;
-    left: 285px;
+    top: 100px;
+    right: 8%;
     height: 112px;
     width: 140px;
 
@@ -25,13 +32,12 @@
 #awayLogoBox {
     
     position: absolute;
-    top: 150px;
-    left: 55px;
+    top: 100px;
+    left: 8%;
     height: 112px;
     width: 140px;
     
 }
-
 .teamLogo {
     
     height: 100%;
@@ -39,14 +45,6 @@
 
 }
 
-
-#mainBody { 
-
-    background-color: white;
-    height: 245px;
-    width: 480px;
-
-}
 
 #banner{
     text-align: center;
@@ -59,51 +57,68 @@
     
 }
 
-#gameTime {
-
-    position: absolute;
-    top: 90px;
-    left: 45px;
-
-}
-#gameTime p {
-    
-    font-size: 16px;
-    font-family: Century Gothic, sans-serif;
-
-}
-
 #homeScore {
     position: absolute;
-    left: 410px;
-    top: 150px;
+    text-align: left;
+    right: 37%;
+    top: 160px;
+    color: #FCb514;
+    font-size: 62px;
+    font-family: 'nhl_st_louisregular', sans-serif;
+    color: #FCb514;
+    font-size: 62px;
+    font-family: 'nhl_st_louisregular', sans-serif;
     
 }
 
 #awayScore {
     position: absolute;
-    left: 170px;
-    top: 150px;
+    text-align: left;
+    left: 37%;
+    top: 160px;
+    color: #FCb514;
+    font-size: 62px;
+    font-family: 'nhl_st_louisregular', sans-serif;
+    color: #FCb514;
+    font-size: 62px;
+    font-family: 'nhl_st_louisregular', sans-serif;
     
 }
 
-.score {
+
+#homeShots {
+    position: absolute;
+    text-align: right;
+    right: 37%;
+    top: 230px;
     color: #FCb514;
     text-align: right;
-    font-size: 62px;
+    font-size: 20px;
+    font-family: 'nhl_st_louisregular', sans-serif;
+}
+
+#awayShots {
+    position: absolute;
+    text-align: left;
+    left: 37%;
+    top: 230px;
+    color: #FCb514;
+    text-align: right;
+    font-size: 20px;
     font-family: 'nhl_st_louisregular', sans-serif;
 }
 
 
-#vs {
-    position: absolute;
-    font-family: Century Gothic, sans-serif;
-    font-size: 16px;
+#sog {
+    top: 210px;
+    color: #002f87;
     text-align: center;
-    top: 60%;
-    left: 50%;
+    margin: 0 auto;
+    padding-top: 20px;
+    font-size: 20px;
+    font-family: 'nhl_st_louisregular', sans-serif;
+    line-height: 20px
 }
-
 
 
 #gameStatus {
@@ -113,4 +128,67 @@
     text-align: center;
     top: 50%;
     left: 50%;
+}
+
+#periodTime {
+    top: 130px;
+    color: #002f87;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'nhl_st_louisregular', sans-serif;
+    line-height: 20px
+}
+
+#period {
+    top: 100px;
+    color: #002f87;
+    text-align: center;
+    padding-top: 95px;
+    font-size: 20px;
+    font-family: 'nhl_st_louisregular', sans-serif;
+    line-height: 20px
+}
+
+#status {
+    position: absolute;
+    bottom: 0px;
+    text-align: center;
+    margin: 0 auto;
+    height: 50px;
+    width: 480px;
+    font-family: 'nhl_st_louisregular', sans-serif;
+    font-size: 40px;
+    line-height: 50px;
+    background-color: #002f87;
+    color: #FCb514;
+}
+
+#date {
+    top: 130px;
+    color: #002f87;
+    text-align: center;
+    padding-top: 40px;
+    font-size: 20px;
+    font-family: 'nhl_st_louisregular', sans-serif;
+    line-height: 20px
+}
+
+#time {
+    top: 110px;
+    color: #002f87;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'nhl_st_louisregular', sans-serif;
+    line-height: 20px
+}
+
+#vs {
+    top: 210px;
+    color: #FCb514;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 20px;
+    font-size: 20px;
+    font-family: 'nhl_st_louisregular', sans-serif;
+    line-height: 20px
 }

@@ -8,12 +8,17 @@
     <body>
     <div id="element">
         <div id="banner">
-            <span>St. Louis Blues</span>
+            St. Louis Blues
         </div>
-        <div id="mainBody">
+        
         {% block content %}
         {% endblock %}
+        
+
+        <div id="status">
+            {{game_status}}
         </div>
+
     </div>
     </body>
 </html>
