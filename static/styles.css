@@ -47,14 +47,17 @@ body {
 
 
 #banner{
+
     text-align: center;
     height: 75px;
     width: 480px;
     font-family: 'nhl_st_louisregular', sans-serif;
     font-size: 62px;
+    line-height: 62px;
     background-color: #002f87;
     color: #FCb514;
-    
+    letter-spacing: 2px;
+    margin: 0 auto;
 }
 
 #homeScore {
@@ -152,6 +155,7 @@ body {
 #status {
     position: absolute;
     bottom: 0px;
+    letter-spacing: 2px;
     text-align: center;
     margin: 0 auto;
     height: 50px;
