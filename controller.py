@@ -60,6 +60,16 @@ def display_game():
     else:
         return render_template('most-recent.html', game=game, game_status="GAME COMPLETE")
 
+"""
+TODO:
+    Player stats - blues
+        DB
+    Leaderboards
+        API
+    Standings
+        DB
+"""
+
 
 if __name__ == "__main__":
     app.run()

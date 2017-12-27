@@ -60,7 +60,7 @@ def create_db():
 
 def main():
     db.create_all()
-    #import_games()
+    import_games()
     create_db()
 
 if __name__ == '__main__':
