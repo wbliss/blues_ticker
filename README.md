@@ -16,13 +16,14 @@ pip install pymysql
 ```
 
 create a config.py file with variables: 
-
+```
 secret_key
 sql_username
 sql_password
 fav_team_id (19 for blues)
 localtz (For example 'Europe/Berlin', 'America/Chicago', etc.)
-
+```
 run setup.py
+
 run controller.py
 
