@@ -30,7 +30,7 @@ def display_ticker():
     
     #Otherwise, displays the next game
     else:
-        return render_template('next-game.html', game=next_game, game_status="UPCOMING GAME")
+        return render_template('next-game.html', game=next_game, game_status="NEXT GAME")
 
 @app.route('/most-recent')
 def display_most_recent():
@@ -53,9 +53,14 @@ def display_live_game():
 @app.route('/game')
 def display_game():
     id = request.args.get('id')
+    current_date_time = get_current_date_time()
 
-    game = Game.query.filter_by(game_id=id).first()
-    if game.game_status == "Unplayed":
+    game = Game.query.filter_by(id=id).first()
+    if ((current_date_time.split('.')[0] == game.date) and 
+            (convert_to_24hour(current_date_time.split('.')[1]) > convert_to_24hour(game.time))):
+        game_stats = get_live_updates(game)
+        return render_template('live.html', game=game, game_stats=game_stats, game_status="LIVE")
+    elif game.game_status == "Unplayed":
         return render_template('next-game.html', game=game, game_status="UPCOMING GAME")
     else:
         return render_template('most-recent.html', game=game, game_status="GAME COMPLETE")

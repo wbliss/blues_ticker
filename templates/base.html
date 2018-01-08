@@ -7,10 +7,28 @@
     </head>
     <body>
     <div id="element">
-        <div id="banner">
-            St Louis Blues
-        </div>
-        
+        <a href='/' style="text-decoration: none">
+            <div id="banner">
+                St Louis Blues
+            </div>
+        </a>
+        {% if game.id != 82 and game.id != 1 %}
+            <a href="/game?id={{game.id + 1}}">
+                <div id='nextGame'></div>
+            </a>
+            <a href="/game?id={{game.id - 1}}">
+                <div id='prevGame'></div>
+            </a>
+        {% elif game.id == 1 %}
+            <a href="/game?id={{game.id + 1}}">
+                <div id='nextGame'></div>
+            </a>
+        {% else %}
+            <a href="/game?id={{game.id - 1}}">
+                <div id='prevGame'></div>
+            </a>
+        {% endif %}
+
         {% block content %}
         {% endblock %}
         

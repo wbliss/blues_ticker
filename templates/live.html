@@ -7,7 +7,7 @@
             window.location = window.location.href;
         }
         
-         setInterval('autoRefresh()', 120000);
+         setInterval('autoRefresh()', 60000);
     </script>
 {% endblock %}
 {% block content %}
@@ -15,34 +15,13 @@
         <div id="awayLogoBox">
             <img class="teamLogo" src= {{ url_for('static', filename = game.away_team.replace(' ', '_') + '.svg') }} alt= game.away_team + ' Logo'>
         </div>
-        
-        <div id="awayScore">
-            3
-        </div>
-        <div id="awayShots">
-            29
-        </div>
-            
+        <div id='vs'>
+            VS
+        </div>  
         <div id="homeLogoBox">
             <img class="teamLogo" src= {{ url_for('static', filename = game.home_team.replace(' ', '_') + '.svg') }} alt= game.home_team + ' Logo'>
         </div>
-        <div id="homeScore">
-            2
-        </div>
-        <div id="homeShots">
-            32
-        </div>
-        
-        <div id="period">
-            1st
-        </div>
-        <div id="periodTime">
-            00:00
-        </div>
-        <div id="sog">
-            SOG
-        </div>
-            
+
         
     {% elif game_stats == 'Final' %}
         <p>Final Score:</p>
