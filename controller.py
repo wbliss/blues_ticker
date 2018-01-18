@@ -44,12 +44,6 @@ def display_next_game():
     next_game = Game.query.filter_by(next_game=True).first()
     return render_template('next-game.html', game=next_game)
 
-@app.route('/live')
-def display_live_game():
-    next_game = Game.query.filter_by(next_game=True).first()
-    game_stats = get_live_updates(next_game)
-    return render_template('live.html', game=next_game, game_stats=game_stats)
-
 @app.route('/game')
 def display_game():
     id = request.args.get('id')
@@ -65,6 +59,12 @@ def display_game():
     else:
         return render_template('most-recent.html', game=game, game_status="GAME COMPLETE")
 
+@app.route('/demo')
+def display_demo():
+
+    next_game = Game.query.filter_by(next_game=True).first()
+    return render_template('demo.html', game=next_game)
+    
 """
 TODO:
     Player stats - blues

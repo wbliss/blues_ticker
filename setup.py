@@ -52,9 +52,9 @@ def create_db():
         db.session.add(new_game)
 
     
-    """for game in all_games:
+    for game in all_games:
         game_id = str(game.get('gamePk'))
-        complete_game(game_id, mass_import=True)"""
+        complete_game(game_id, mass_import=True)
 
     db.session.commit()
 

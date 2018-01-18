@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="awayLogoBox">
+    <img class="teamLogo" src= {{ url_for('static', filename = game.away_team.replace(' ', '_') + '.svg') }} alt= game.away_team + ' Logo'>
+</div>
+
+<div id="awayScore">
+    2
+</div>
+<div id="awayShots">
+    12
+</div>
+    
+<div id="homeLogoBox">
+    <img class="teamLogo" src= {{ url_for('static', filename = game.home_team.replace(' ', '_') + '.svg') }} alt= game.home_team + ' Logo'>
+</div>
+<div id="homeScore">
+    0
+</div>
+<div id="homeShots">
+    9
+</div>
+
+<div id="period">
+    1st
+</div>
+<div id="periodTime">
+    6:56
+</div>
+<div id="sog">
+    SOG
+</div>
+<div id="status">
+    LIVE
+</div>
+{% endblock %}

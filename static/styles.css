@@ -63,7 +63,7 @@ body {
 
 #homeScore {
     position: absolute;
-    text-align: right;
+    text-align: left;
     right: 37%;
     top: 50%;
     color: #FCb514;
@@ -75,7 +75,7 @@ body {
 
 #awayScore {
     position: absolute;
-    text-align: left;
+    text-align: right;
     left: 37%;
     top: 50%;
     color: #FCb514;
