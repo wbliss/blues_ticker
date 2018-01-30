@@ -51,7 +51,8 @@ def display_game():
 
     game = Game.query.filter_by(id=id).first()
     if ((current_date_time.split('.')[0] == game.date) and 
-            (convert_to_24hour(current_date_time.split('.')[1]) > convert_to_24hour(game.time))):
+            (convert_to_24hour(current_date_time.split('.')[1]) > convert_to_24hour(game.time)) and
+            game.most_recent != True):
         game_stats = get_live_updates(game)
         return render_template('live.html', game=game, game_stats=game_stats, game_status="LIVE")
     elif game.game_status == "Unplayed":

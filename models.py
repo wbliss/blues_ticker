@@ -1,4 +1,5 @@
-from app import db, app
+from app import app, db
+
 
 class Game(db.Model):
 
@@ -13,6 +14,7 @@ class Game(db.Model):
     game_status = db.Column(db.String(120))
     most_recent = db.Column(db.Boolean)
     next_game = db.Column(db.Boolean)
+    goals = db.relationship('Point', backref='game_points')
 
     def __init__(self, game_id, date, time, away_team, home_team, next_game=False):
         """Scrapes game information from API"""
@@ -66,3 +68,38 @@ class Game(db.Model):
             + " ET\nAway Team: " + self.away_team +"-" + str(self.away_goals) 
             + "\nHome Team: " + self.home_team + "-" + str(self.home_goals) 
             + "\nStatus: " + self.game_status + "\n")
+
+class Player(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    player_id = db.Column(db.String(120))
+    first_name = db.Column(db.String(120))
+    last_name = db.Column(db.String(120))
+    number = db.Column(db.String(120))
+    position = db.Column(db.String(120))
+    points = db.relationship('Point', backref='player_points')
+    
+    
+    def __init__(self, player_id, first_name, last_name, number, position):
+        self.player_id = player_id
+        self.first_name = first_name
+        self.last_name = last_name
+        self.number = number
+        self.position = position
+
+
+class Point(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    game = db.Column(db.Integer, db.ForeignKey('game.id'))
+    player = db.Column(db.Integer, db.ForeignKey('player.id'))
+    period = db.Column(db.String(120))
+    time = db.Column(db.String(120))
+    goal = db.Column(db.Boolean)
+    assist = db.Column(db.Boolean)
+
+
+    def __init__(self, game, period, time):
+        self.game = game
+        self.period = period
+        self.time = time
