@@ -8,7 +8,7 @@
 }
 
 body {
-    background-color: white;
+    background-color: #002f87;
     width: 460px;
     height: 300px;
 }
@@ -165,7 +165,7 @@ body {
 
 #date {
     top: 40.625%;
-    color: #002f87;
+    color: white;
     text-align: center;
     padding-top: 10.5%;
     font-size: 125%;
@@ -175,7 +175,7 @@ body {
 
 #time {
     top: 34.375%;
-    color: #002f87;
+    color: white;
     text-align: center;
     font-size: 125%;
     font-family: 'nhl_st_louisregular', sans-serif;
@@ -184,7 +184,7 @@ body {
 
 #vs {
     top: 65.625%;
-    color: #FCb514;
+    color: white;
     text-align: center;
     margin: 0 auto;
     padding-top: 6.25%;

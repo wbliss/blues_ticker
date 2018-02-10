@@ -118,7 +118,7 @@ def get_up_to_date():
             return 'Games are up-to-date!'
 
 def main():
-    return None
+    get_current_date_time()
 
 if __name__ == '__main__':
     main()
