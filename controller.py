@@ -42,7 +42,7 @@ def display_ticker():
 def display_most_recent():
     #Display if game was played on todays date
     most_recent_game = Game.query.filter_by(most_recent=True).first()
-    return render_template('most-recent.html', game=most_recent_game)
+    return render_template('most-recent.html', game=most_recent_game, game_status=most_recent_game.game_status)
 
 @app.route('/next-game')
 def display_next_game():
@@ -64,7 +64,7 @@ def display_game():
     elif game.game_status == "Unplayed":
         return render_template('next-game.html', game=game, game_status="UPCOMING GAME")
     else:
-        return render_template('most-recent.html', game=game, game_status="GAME COMPLETE")
+        return render_template('most-recent.html', game=game, game_status=game.game_status)
 
 @app.route('/demo')
 def display_demo():
