@@ -18,7 +18,7 @@ def complete_game(game_id, game=None, mass_import=False):
         game = Game.query.filter_by(game_id=game_id).first()
     
     if "Final" in game.game_status:
-        return "Game already completed"
+        return False
     
     if str(game_log.get('gamePk')) == game_id:
         
@@ -36,16 +36,16 @@ def complete_game(game_id, game=None, mass_import=False):
             
             game.complete_game(away_score, home_score, game_status)
             if mass_import:
-                return "Game completed!"
+                return True
             else:
                 db.session.commit()
-                return "Game completed!"
+                return True
         
         else:
-            return "Game is not complete"
+            return False
     
     else:
-        return "Game not found"
+        return False
         
 def convert_datetime(date, time, tz):
     date_time = datetime.strptime(date + '.' + time, '%Y-%m-%d.%H:%M')

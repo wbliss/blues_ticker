@@ -4,7 +4,7 @@ from flask import flash, redirect, render_template, request, session
 
 from app import app
 from models import Game, db
-from helpers import get_current_date_time, convert_to_24hour, get_live_updates, get_up_to_date
+from helpers import get_current_date_time, convert_to_24hour, get_live_updates, get_up_to_date, complete_game
 
 
 @app.route('/')
@@ -25,8 +25,14 @@ def display_ticker():
     #Displays game if game is live, (or it should be)
     elif ((current_date_time.split('.')[0] == next_game.date) and 
             (convert_to_24hour(current_date_time.split('.')[1]) > convert_to_24hour(next_game.time))):
-        game_stats = get_live_updates(next_game)
-        return render_template('live.html', game=next_game, game_stats=game_stats, game_status="LIVE")
+        
+        game_complete = complete_game(next_game.gameid, next_game)
+        if not game_complete:
+
+            game_stats = get_live_updates(next_game)
+            return render_template('live.html', game=next_game, game_stats=game_stats, game_status="LIVE")
+            
+        return render_template('most-recent.html', game=next_game, game_status="GAME COMPLETED")
     
     #Otherwise, displays the next game
     else:
