@@ -20,7 +20,7 @@ def display_ticker():
 
     #Displays the last game played if date is the same as the game was played
     if current_date_time.split('.')[0] == prev_game.date:
-        return render_template('most-recent.html', game=prev_game, game_status="GAME COMPLETED")
+        return render_template('most-recent.html', game=prev_game, game_status=prev_game.game_status)
 
     #Displays game if game is live, (or it should be)
     elif ((current_date_time.split('.')[0] == next_game.date) and 
@@ -32,7 +32,7 @@ def display_ticker():
             game_stats = get_live_updates(next_game)
             return render_template('live.html', game=next_game, game_stats=game_stats, game_status="LIVE")
             
-        return render_template('most-recent.html', game=next_game, game_status="GAME COMPLETED")
+        return render_template('most-recent.html', game=next_game, game_status=next_game.game_status)
     
     #Otherwise, displays the next game
     else:
