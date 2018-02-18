@@ -26,7 +26,7 @@ def display_ticker():
     elif ((current_date_time.split('.')[0] == next_game.date) and 
             (convert_to_24hour(current_date_time.split('.')[1]) > convert_to_24hour(next_game.time))):
         
-        game_complete = complete_game(next_game.gameid, next_game)
+        game_complete = complete_game(next_game.game_id, next_game)
         if not game_complete:
 
             game_stats = get_live_updates(next_game)
@@ -59,8 +59,7 @@ def display_game():
     if ((current_date_time.split('.')[0] == game.date) and 
             (convert_to_24hour(current_date_time.split('.')[1]) > convert_to_24hour(game.time)) and
             game.most_recent != True):
-        game_stats = get_live_updates(game)
-        return render_template('live.html', game=game, game_stats=game_stats, game_status="LIVE")
+        return redirect('/ticker')
     elif game.game_status == "Unplayed":
         return render_template('next-game.html', game=game, game_status="UPCOMING GAME")
     else:

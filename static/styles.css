@@ -110,7 +110,7 @@ body {
 
 #sog {
     top: 66%;
-    color: #002f87;
+    color: white;
     text-align: center;
     margin: 0 auto;
     padding-top: 6.25%;
@@ -131,7 +131,7 @@ body {
 
 #periodTime {
     top: 40%;
-    color: #002f87;
+    color: white;
     text-align: center;
     font-size: 125%;
     font-family: 'nhl_st_louisregular', sans-serif;
@@ -140,7 +140,7 @@ body {
 
 #period {
     top: 25%;
-    color: #002f87;
+    color: white;
     text-align: center;
     padding-top: 18%;
     font-size: 125%;
